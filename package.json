@@ -1,0 +1,38 @@
+{
+  "name": "google-calendar-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js",
+    "devstart": "nodemon app.js",
+    "serverstart": "DEBUG=google-calendar-app:* npm run devstart"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VeronicaTis/google-calendar-app.git"
+  },
+  "keywords": [],
+  "author": "Veronica",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/VeronicaTis/google-calendar-app/issues"
+  },
+  "homepage": "https://github.com/VeronicaTis/google-calendar-app#readme",
+  "dependencies": {
+    "async": "^3.2.0",
+    "compression": "^1.7.4",
+    "cookie-parser": "^1.4.5",
+    "debug": "^2.6.9",
+    "express": "^4.17.1",
+    "express-validator": "^6.10.0",
+    "googleapis": "^67.1.1",
+    "helmet": "^4.4.1",
+    "http-errors": "^1.7.2",
+    "luxon": "^1.26.0",
+    "mongoose": "^5.11.19",
+    "morgan": "^1.10.0",
+    "pug": "^3.0.2"
+  }
+}
