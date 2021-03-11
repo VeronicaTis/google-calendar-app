@@ -1,6 +1,15 @@
+//import { createRequire } from 'module';
+//const require = createRequire(import.meta.url);
+
+
 const fs = require('fs');
-const readline = require('readline');
+//const readline = require('readline');
 const {google} = require('googleapis');
+
+//const cid = document.getElementById("cid").value;
+//const tmin = document.getElementById("tmin").value;
+
+var bnsm = [];
 
 const CLIENT_ID = '190904681507-acqntr4utgm2ubj67b1n11qrbmvotns3.apps.googleusercontent.com';
 const CLIENT_SECRET ='DI-i1Vdrsq2bykrS9So83tb8';
@@ -17,7 +26,7 @@ function listEvents(auth) {
   const Calendar = google.calendar({version: 'v3', auth});
   Calendar.events.list({
     calendarId: 'vtisdel192@west-mec.org',
-    timeMin: '2019-05-15T09:00:00-07:00',
+    timeMin: '2019-05-01T09:00:00-07:00',
     //maxResults: 10,
     singleEvents: true,
     orderBy: 'startTime',
@@ -34,10 +43,35 @@ function listEvents(auth) {
       events.map((event, i) => {
         const start = event.start.dateTime || event.start.date;
         console.log(`${start} - ${event.summary}`);
+        let detail= {
+          name: event.summary,
+          stime: event.start.dateTime,
+          etime: event.start.date
+        }
+
+        let data = JSON.stringify(detail, null, 2);
+        if (i != events.length - 1)
+        {
+          bnsm += data+'\,\n';
+        }
+        else if (i = 1)
+        {
+          bnsm += '\n'+data+'\n';
+        }
+        else 
+        {
+          bnsm += data+'\n';
+        }
+        
+
+        console.log('This is after the write call');
       });
     } else {
       console.log('No upcoming events found.');
     }
+    fs.writeFileSync('try.json','['+bnsm+']' );
   });
 }
 listEvents(oAuth2Client);
+
+
